@@ -1,0 +1,6 @@
+@LMS_Learning_Menagment_System_API_HostAddress = http://localhost:5039
+
+GET {{LMS_Learning_Menagment_System_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
