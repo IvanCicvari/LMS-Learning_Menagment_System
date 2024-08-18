@@ -23,6 +23,8 @@ public partial class User
 
     public int? RoleId { get; set; }
 
+    public int? ClassId { get; set; }
+
     public DateTime? CreatedDate { get; set; }
 
     public DateTime? UpdatedDate { get; set; }
@@ -30,6 +32,8 @@ public partial class User
     public bool? IsDeleted { get; set; }
 
     public virtual City? City { get; set; }
+
+    public virtual Class? Class { get; set; }
 
     public virtual Country? Country { get; set; }
 
@@ -40,6 +44,10 @@ public partial class User
     public virtual ICollection<Grade> Grades { get; set; } = new List<Grade>();
 
     public virtual ICollection<Material> Materials { get; set; } = new List<Material>();
+
+    public virtual ICollection<Message> MessageReceivers { get; set; } = new List<Message>();
+
+    public virtual ICollection<Message> MessageSenders { get; set; } = new List<Message>();
 
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
