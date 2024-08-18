@@ -50,26 +50,77 @@ namespace LMS_Learning_Menagment_System_API.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<GetUserModel>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            // Fetch user data along with related entities
+            var user = await _context.Users
+                .Include(u => u.City) // Include related data
+                .Include(u => u.Country)
+                .Include(u => u.Role)
+                .Include(u => u.Class) // Include class information
+                .Include(u => u.Grades) // Include grades to get the associated exams
+                    .ThenInclude(g => g.Exam) // Include exam details
+                .FirstOrDefaultAsync(u => u.Iduser == id);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            return user;
+            // Map to GetUserModel
+            var userModel = new GetUserModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Email = user.Email,
+                Password = user.Password, // Be cautious with including password in the response
+                CountryName = user.Country?.Name,
+                CityName = user.City?.Name,
+                RoleName = user.Role?.RoleName,
+                ClassName = user.Class?.ClassName,
+                Exams = user.Grades.Select(g => new ExamDto
+                {
+                    ExamName = g.Exam.ExamName,
+                    ExamDate = g.Exam.ExamDate, // Ensure this property is of type DateTime
+                    Grade = g.Grade1 // Adjust if the property name is different
+                }).ToList()
+            };
+
+            return Ok(userModel);
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserDto updateUserDto)
         {
-            if (id != user.Iduser)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
-                return BadRequest();
+                return NotFound();
+            }
+
+            if (updateUserDto.FirstName != null)
+            {
+                user.FirstName = updateUserDto.FirstName;
+            }
+            if (updateUserDto.LastName != null)
+            {
+                user.LastName = updateUserDto.LastName;
+            }
+            if (updateUserDto.Email != null)
+            {
+                user.Email = updateUserDto.Email;
+            }
+            if (updateUserDto.Password != null)
+            {
+                user.Password = updateUserDto.Password;
+            }
+            if (updateUserDto.RoleId.HasValue)
+            {
+                user.RoleId = updateUserDto.RoleId.Value;
             }
 
             _context.Entry(user).State = EntityState.Modified;
@@ -80,7 +131,7 @@ namespace LMS_Learning_Menagment_System_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!_context.Users.Any(e => e.Iduser == id))
                 {
                     return NotFound();
                 }
@@ -92,6 +143,7 @@ namespace LMS_Learning_Menagment_System_API.Controllers
 
             return NoContent();
         }
+
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

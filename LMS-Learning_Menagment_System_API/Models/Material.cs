@@ -9,7 +9,9 @@ public partial class Material
 
     public string MaterialName { get; set; } = null!;
 
-    public string MaterialUrl { get; set; } = null!;
+    public byte[] MaterialData { get; set; } = null!;
+
+    public string FileType { get; set; } = null!;
 
     public int? CourseId { get; set; }
 
