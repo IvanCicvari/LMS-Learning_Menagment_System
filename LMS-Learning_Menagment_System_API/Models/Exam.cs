@@ -11,7 +11,7 @@ public partial class Exam
 
     public int? CourseId { get; set; }
 
-    public DateOnly ExamDate { get; set; }
+    public DateTime ExamDate { get; set; }
 
     public int? CreatedBy { get; set; }
 

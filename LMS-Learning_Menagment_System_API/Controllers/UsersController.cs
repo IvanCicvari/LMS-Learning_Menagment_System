@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LMS_Learning_Menagment_System_API.Models;
 using LMS_Learning_Menagment_System_API.Helpers;
 using LMS_Learning_Menagment_System_API.DTO;
-using Microsoft.AspNetCore.Authorization;
 
 namespace LMS_Learning_Menagment_System_API.Controllers
 {
@@ -67,7 +61,6 @@ namespace LMS_Learning_Menagment_System_API.Controllers
                 return NotFound();
             }
 
-            // Map to GetUserModel
             var userModel = new GetUserModel
             {
                 FirstName = user.FirstName,

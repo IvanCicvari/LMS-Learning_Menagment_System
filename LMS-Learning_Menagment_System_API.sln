@@ -5,7 +5,9 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMS-Learning_Menagment_System_API", "LMS-Learning_Menagment_System_API\LMS-Learning_Menagment_System_API.csproj", "{ABDDBE54-54B8-4FDB-AFD4-4EF757394D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{B7C09A08-F51E-4559-9A23-73CB4E6F915A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{B7C09A08-F51E-4559-9A23-73CB4E6F915A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS_FRONTEND", "LMS_FRONTEND\LMS_FRONTEND.csproj", "{7127B6E4-7949-4D8B-B41F-05FAFA615B07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B7C09A08-F51E-4559-9A23-73CB4E6F915A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7C09A08-F51E-4559-9A23-73CB4E6F915A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7C09A08-F51E-4559-9A23-73CB4E6F915A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7127B6E4-7949-4D8B-B41F-05FAFA615B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7127B6E4-7949-4D8B-B41F-05FAFA615B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7127B6E4-7949-4D8B-B41F-05FAFA615B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7127B6E4-7949-4D8B-B41F-05FAFA615B07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
